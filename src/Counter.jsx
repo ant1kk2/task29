@@ -14,20 +14,26 @@ class App extends React.Component {
     this.setState((prevState) => ({
       count: prevState.count + 1,
     }));
-  }
+  };
 
   decreaseValue = () => {
     this.setState((prevState) => ({
       count: prevState.count - 1,
     }));
-  }
+  };
+  resetValue = () => {
+    this.setState({
+      count: 0,
+    });
+  };
 
   render() {
     return (
       <div className="app">
-        <Button symbol="+" onClick={this.increaseValue}/>
-        <Count value={this.state.count}/>
-        <Button symbol="-" onClick={this.decreaseValue}/>
+        <Button symbol="+" onClick={this.increaseValue} />
+        <Count value={this.state.count} />
+        <Button symbol="-" onClick={this.decreaseValue} />
+        <Button symbol="Reset" onClick={this.resetValue} />
       </div>
     );
   }
