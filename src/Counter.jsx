@@ -8,6 +8,7 @@ class Counter extends React.Component {
     this.state = {
       count: this.props.initialValue,
     };
+    this.initialValue = this.props.initialValue;
   }
 
   increaseValue = () => {
@@ -23,7 +24,7 @@ class Counter extends React.Component {
   };
   resetValue = () => {
     this.setState({
-      count: 0,
+      count: this.initialValue,
     });
   };
 
