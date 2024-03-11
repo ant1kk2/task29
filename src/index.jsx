@@ -7,4 +7,6 @@ import "./styles.css";
 const mainEl = document.querySelector("main");
 const root = ReactDOM.createRoot(mainEl);
 
-root.render(<Counter initialValue={12} />);
+const INITIAL_VALUE = 123;
+
+root.render(<Counter initialValue={INITIAL_VALUE} />);
