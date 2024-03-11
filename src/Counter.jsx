@@ -5,17 +5,9 @@ import Count from "./Components/Count/Count.jsx";
 class Counter extends React.Component {
   constructor(props) {
     super(props);
-    if (/^(?!0\d)(\d+(\.\d+)?|0\.\d+)$/gm.test(this.props.initialValue)) {
-      this.state = {
-        count: this.props.initialValue,
-      };
-      this.isValid = true;
-    } else {
-      this.state = {
-        count: "Не валiдне число",
-      };
-      this.isValid = false;
-    }
+    this.state = {
+      count: this.props.initialValue,
+    };
   }
 
   increaseValue = () => {
@@ -38,19 +30,10 @@ class Counter extends React.Component {
   render() {
     return (
       <div className="app">
-        <Button
-          symbol="+"
-          onClick={this.isValid ? this.increaseValue : () => {}}
-        />
+        <Button symbol="+" onClick={this.increaseValue} />
         <Count value={this.state.count} />
-        <Button
-          symbol="-"
-          onClick={this.isValid ? this.decreaseValue : () => {}}
-        />
-        <Button
-          symbol="Reset"
-          onClick={this.isValid ? this.resetValue : () => {}}
-        />
+        <Button symbol="-" onClick={this.decreaseValue} />
+        <Button symbol="Reset" onClick={this.resetValue} />
       </div>
     );
   }
