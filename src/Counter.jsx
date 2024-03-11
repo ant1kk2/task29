@@ -2,12 +2,20 @@ import React from "react";
 import Button from "./Components/Button/Button.jsx";
 import Count from "./Components/Count/Count.jsx";
 
-class App extends React.Component {
+class Counter extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      count: 0,
-    };
+    if (/^(?!0\d)(\d+(\.\d+)?|0\.\d+)$/gm.test(this.props.initialValue)) {
+      this.state = {
+        count: this.props.initialValue,
+      };
+      this.isValid = true;
+    } else {
+      this.state = {
+        count: "Не валiдне число",
+      };
+      this.isValid = false;
+    }
   }
 
   increaseValue = () => {
@@ -30,13 +38,22 @@ class App extends React.Component {
   render() {
     return (
       <div className="app">
-        <Button symbol="+" onClick={this.increaseValue} />
+        <Button
+          symbol="+"
+          onClick={this.isValid ? this.increaseValue : () => {}}
+        />
         <Count value={this.state.count} />
-        <Button symbol="-" onClick={this.decreaseValue} />
-        <Button symbol="Reset" onClick={this.resetValue} />
+        <Button
+          symbol="-"
+          onClick={this.isValid ? this.decreaseValue : () => {}}
+        />
+        <Button
+          symbol="Reset"
+          onClick={this.isValid ? this.resetValue : () => {}}
+        />
       </div>
     );
   }
 }
 
-export default App;
+export default Counter;
